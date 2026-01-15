@@ -1,0 +1,28 @@
+{
+    "version": "0.1.0",
+    "description": "A CLI tool to analyze GitHub repository health",
+    "homepage": "https://github.com/kasaiarashi/repo-health",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/kasaiarashi/repo-health/releases/download/v0.1.0/repo-health-windows-x64.exe",
+            "bin": [
+                [
+                    "repo-health-windows-x64.exe",
+                    "repo-health"
+                ]
+            ],
+            "hash": ""
+        }
+    },
+    "checkver": {
+        "github": "https://github.com/kasaiarashi/repo-health"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/kasaiarashi/repo-health/releases/download/v$version/repo-health-windows-x64.exe"
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>repo-health</id>
+    <version>0.1.0</version>
+    <title>repo-health</title>
+    <authors>kasaiarashi</authors>
+    <owners>kasaiarashi</owners>
+    <licenseUrl>https://github.com/kasaiarashi/repo-health/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/kasaiarashi/repo-health</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A CLI tool to analyze GitHub repository health across documentation, tests, CI/CD, dependencies, and bus factor.</description>
+    <summary>Analyze GitHub repository health and generate detailed reports</summary>
+    <tags>github repository analysis cli developer-tools</tags>
+    <releaseNotes>https://github.com/kasaiarashi/repo-health/releases</releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>

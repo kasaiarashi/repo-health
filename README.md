@@ -14,7 +14,44 @@ Analyzes repositories across five key dimensions:
 
 ## Installation
 
+### Windows
+
+#### Using Scoop (Recommended)
+```powershell
+scoop bucket add kasaiarashi https://github.com/kasaiarashi/scoop-bucket
+scoop install repo-health
+```
+
+#### Using Chocolatey
+```powershell
+choco install repo-health
+```
+
+#### Manual Download
+Download `repo-health-windows-x64.exe` from the [latest release](https://github.com/kasaiarashi/repo-health/releases/latest), rename to `repo-health.exe`, and add to your PATH.
+
+### Linux
+
+Download `repo-health-linux-x64` from the [latest release](https://github.com/kasaiarashi/repo-health/releases/latest):
+
 ```bash
+# Download and install
+curl -L https://github.com/kasaiarashi/repo-health/releases/latest/download/repo-health-linux-x64 -o repo-health
+chmod +x repo-health
+sudo mv repo-health /usr/local/bin/
+```
+
+### Using Cargo
+
+```bash
+cargo install --git https://github.com/kasaiarashi/repo-health
+```
+
+### Build from Source
+
+```bash
+git clone https://github.com/kasaiarashi/repo-health.git
+cd repo-health
 cargo build --release
 ```
 
