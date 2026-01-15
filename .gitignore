@@ -32,6 +32,11 @@ Thumbs.db
 nul
 NUL
 
+# =========================
+# Generated reports
+# =========================
+REPO_HEALTH.md
+*.md.bak
 
 # Added by cargo
 
