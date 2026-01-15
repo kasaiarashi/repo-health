@@ -36,11 +36,17 @@ pub struct RepoData {
 }
 
 impl GitHubClient {
-    pub fn new(token: String) -> Result<Self> {
-        let octocrab = Octocrab::builder()
-            .personal_token(token)
-            .build()
-            .map_err(|_| RepoHealthError::AuthenticationFailed)?;
+    pub fn new(token: Option<String>) -> Result<Self> {
+        let octocrab = if let Some(token) = token {
+            Octocrab::builder()
+                .personal_token(token)
+                .build()
+                .map_err(|_| RepoHealthError::AuthenticationFailed)?
+        } else {
+            Octocrab::builder()
+                .build()
+                .map_err(|_| RepoHealthError::AuthenticationFailed)?
+        };
 
         Ok(Self { octocrab })
     }
@@ -74,13 +80,17 @@ impl GitHubClient {
         );
 
         // Handle 202 response (stats still being calculated)
-        for attempt in 0..5 {
+        for attempt in 0..3 {
             match self.octocrab.get::<Vec<ContributorStats>, _, _>(&url, None::<&()>).await {
                 Ok(contributors) => return Ok(contributors),
-                Err(_) if attempt < 4 => {
+                Err(_) if attempt < 2 => {
                     tokio::time::sleep(tokio::time::Duration::from_secs(2u64.pow(attempt))).await;
                 }
-                Err(e) => return Err(e.into()),
+                Err(_) => {
+                    // If we can't get contributor stats after retries, return empty list
+                    // This is non-critical data, so we continue with analysis
+                    return Ok(Vec::new());
+                }
             }
         }
 

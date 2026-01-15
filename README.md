@@ -22,13 +22,9 @@ The binary will be available at `target/release/repo-health`.
 
 ## Usage
 
-Set your GitHub token as an environment variable:
+### For Public Repositories
 
-```bash
-export GITHUB_TOKEN=ghp_your_token_here
-```
-
-Analyze a repository:
+No authentication required:
 
 ```bash
 # Using owner/repo format
@@ -36,7 +32,28 @@ repo-health rust-lang/rust
 
 # Using full GitHub URL
 repo-health https://github.com/rust-lang/rust
+```
 
+**Note**: Without authentication, you're subject to GitHub's lower rate limits (60 requests/hour).
+
+### With Authentication (Recommended)
+
+For higher rate limits or private repositories, set your GitHub token:
+
+```bash
+export GITHUB_TOKEN=ghp_your_token_here
+repo-health rust-lang/rust
+```
+
+Or pass it directly:
+
+```bash
+repo-health rust-lang/rust --token ghp_your_token_here
+```
+
+### Additional Options
+
+```bash
 # Specify custom output file
 repo-health rust-lang/rust --output custom-report.md
 
@@ -73,17 +90,23 @@ The tool generates:
 ## Requirements
 
 - Rust 1.70 or later
-- GitHub Personal Access Token with `repo` scope
 - Internet connection for GitHub API access
+- GitHub Personal Access Token (optional for public repos, required for private repos)
 
-## Authentication
+## Authentication (Optional)
 
-Create a GitHub Personal Access Token:
+For public repositories, authentication is optional but recommended for higher rate limits.
+
+To create a GitHub Personal Access Token:
 1. Go to https://github.com/settings/tokens
 2. Click "Generate new token (classic)"
 3. Select scopes: `repo` (for private repos) or `public_repo` (for public only)
 4. Copy the token
 5. Set as environment variable: `export GITHUB_TOKEN=your_token`
+
+**Rate Limits**:
+- Without token: 60 requests/hour
+- With token: 5,000 requests/hour
 
 ## License
 

@@ -31,6 +31,12 @@ async fn run() -> repo_health::Result<()> {
         println!("{}", "Repository Health Analyzer".cyan().bold());
         println!("{}", "=".repeat(60).cyan());
         println!("\n{} {}/{}", "Analyzing:".bold(), owner.green(), repo.green());
+
+        if cli.token.is_none() {
+            println!("\n{} No GitHub token provided. Using unauthenticated access (lower rate limits).", "⚠".yellow());
+            println!("{} Set GITHUB_TOKEN env var or use --token for higher rate limits.\n", "ℹ".cyan());
+        }
+
         println!();
     }
 

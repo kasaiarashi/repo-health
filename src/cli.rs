@@ -8,9 +8,9 @@ pub struct Cli {
     #[arg(value_name = "REPOSITORY")]
     pub repository: String,
 
-    /// GitHub personal access token (or set GITHUB_TOKEN env var)
+    /// GitHub personal access token (or set GITHUB_TOKEN env var). Optional for public repos.
     #[arg(short, long, env = "GITHUB_TOKEN")]
-    pub token: String,
+    pub token: Option<String>,
 
     /// Output file path
     #[arg(short, long, default_value = "REPO_HEALTH.md")]
