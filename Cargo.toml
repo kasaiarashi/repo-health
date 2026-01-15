@@ -1,0 +1,55 @@
+[package]
+name = "repo-health"
+version = "0.1.0"
+edition = "2021"
+description = "A CLI tool to analyze GitHub repository health"
+
+[[bin]]
+name = "repo-health"
+path = "src/main.rs"
+
+[dependencies]
+# GitHub API Client
+octocrab = "0.38"
+
+# CLI Framework
+clap = { version = "4.5", features = ["derive", "env"] }
+
+# Async Runtime
+tokio = { version = "1.40", features = ["full"] }
+
+# HTTP Client
+reqwest = { version = "0.12", features = ["json"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error Handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Parsing
+toml = "0.8"
+
+# Date/Time
+chrono = { version = "0.4", features = ["serde"] }
+
+# Terminal Output
+colored = "2.1"
+
+# Markdown Generation
+handlebars = "5.1"
+
+# URL Parsing
+url = "2.5"
+
+# Base64 encoding/decoding
+base64 = "0.22"
+
+# Async trait
+async-trait = "0.1"
+
+[dev-dependencies]
+mockito = "1.4"
+tokio-test = "0.4"
